@@ -15,8 +15,9 @@ const port =process.env.PORT ||5000
 app.use(cors({
     origin: [
        
-    'https://bookly-auth-c4076.firebaseapp.com',
-    "https://bookly-auth-c4076.web.app",
+    'https://xyzoverwrought-dust.surge.sh',
+    "https://xyzoverwrought-dust.surge.sh",
+    'http://localhost:5173/'
   
 ],
 
@@ -26,17 +27,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
-app.use((req, res, next) => {
-  // Replace 'http://localhost:5173' with the actual origin of your local development environment
-  res.header('Access-Control-Allow-Origin', 'https://bookly-auth-c4076.web.app');
-  
-  // Additional CORS headers to handle other HTTP methods and headers
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  // Continue to the next middleware
-  next();
-});
 
 
 
@@ -74,7 +65,7 @@ const bolean=true;
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+   // await client.connect();
     const servicesCollection =client.db('Bookly').collection('allservices')
     const bookingsCollection =client.db('Bookly').collection('bookings')
 
@@ -286,7 +277,7 @@ app.patch('/bookings/:id',async(req,res)=>{
 
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    //await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
